@@ -1,16 +1,131 @@
-# React + Vite
+# Modern Security Dashboard (React + Tailwind)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive Security Dashboard UI built with React and Tailwind CSS, inspired by real-world SaaS products like Linear, Vercel, and Notion.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## React Compiler
+- Dark / Light Mode Toggle (Tailwind v4 compatible)
+- Fully Responsive Design
+  - Mobile-first layout
+  - Card-based UI for small screens
+- Sidebar Navigation
+  - Desktop sidebar
+  - Mobile drawer (Topbar controlled)
+- Search and Filtering UI
+- Dashboard Stats Section
+- Scans Table (Desktop)
+- Card Layout (Mobile View)
+- Toast Notifications
+- Modern UI Design
+  - Glassmorphism (blur and transparency)
+  - Smooth transitions and subtle shadows
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+---
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React (Vite)
+- Tailwind CSS v4
+- React Router DOM
+- Local State (useState, useEffect)
+
+---
+
+## Project Structure
+
+src/
+│
+├── components/
+│   ├── layout/
+│   │   ├── Sidebar.jsx
+│   │   ├── Topbar.jsx
+│   │
+│   ├── ui/
+│   │   ├── ThemeToggle.jsx
+│   │   ├── StatusChip.jsx
+│   │   ├── Toast.jsx
+│
+├── pages/
+│   ├── Dashboard.jsx
+│   ├── Login.jsx
+│   ├── ScanDetail.jsx
+│
+├── data/
+│   ├── mockData.js
+│
+├── App.jsx
+├── main.jsx
+
+---
+
+## Installation
+
+git clone https://github.com/your-username/your-repo-name.git  
+cd your-repo-name  
+npm install  
+npm run dev  
+
+---
+
+## Dark Mode Setup (Tailwind v4)
+
+This project uses Tailwind v4 custom variant:
+
+@import "tailwindcss";  
+@custom-variant dark (&:where(.dark, .dark *));  
+
+Theme toggle is implemented using:
+
+document.documentElement.classList.toggle("dark")
+
+---
+
+## Responsive Behavior
+
+Mobile  : Card-based scan list with drawer menu  
+Tablet  : Mixed layout  
+Desktop : Sidebar with table view  
+
+---
+
+## Key Highlights
+
+- Component-based architecture  
+- Clean and scalable UI  
+- Real-world dashboard patterns  
+- Mobile-first responsive design  
+- Interview-ready frontend project  
+
+---
+
+## Future Improvements
+
+- Authentication (JWT or OAuth)  
+- Backend integration (Node.js or NestJS)  
+- Real API data handling  
+- Notifications system  
+- Charts and analytics (Recharts or Chart.js)  
+- Performance optimization  
+
+---
+
+## Preview
+
+Add screenshots of:
+- Dashboard (light mode)
+- Dashboard (dark mode)
+- Mobile view
+
+---
+
+## Author
+
+Vishal
+
+---
+
+## License
+
+This project is open-source and available under the MIT License.
