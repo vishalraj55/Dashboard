@@ -35,7 +35,7 @@ This project represents a production-style dashboard UI for managing and monitor
 
 ---
 
-## Project Structure
+<!-- ## Project Structure
 
 src/
 ├── components/
@@ -59,7 +59,7 @@ src/
 ├── App.jsx
 ├── main.jsx
 
----
+--- -->
 
 ## Getting Started
 
