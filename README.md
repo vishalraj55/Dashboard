@@ -23,6 +23,8 @@ Built using React and Tailwind CSS, the project demonstrates frontend best pract
 
 🔗 **Live Demo:** https://your-dashboard-link.vercel.app  
 
+**🚧 This project is currently under development and will be live after completion.**
+
 The live version showcases the dashboard layout, responsive behavior, and UI interactions.  
 For the best experience, viewing on both desktop and mobile devices is recommended.
 
