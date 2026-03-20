@@ -1,125 +1,77 @@
-# Security Dashboard
+<h1 align="center">Security Dashboard</h1>
+<p align="center">A Modern SaaS-Style Security Monitoring Dashboard</p>
 
-A modern, responsive security dashboard built with React and Tailwind CSS.  
-Designed with a clean SaaS-style interface, focusing on usability, performance, and real-world frontend architecture.
+<p align="center">
+  <img src="https://img.shields.io/badge/React-18%2B-61DAFB?style=flat&logo=react&logoColor=black" alt="React" />
+  <img src="https://img.shields.io/badge/Vite-Fast-646CFF?style=flat&logo=vite&logoColor=white" alt="Vite" />
+  <img src="https://img.shields.io/badge/TailwindCSS-v4-38BDF8?style=flat&logo=tailwindcss&logoColor=white" alt="Tailwind CSS" />
+  <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT License" />
+</p>
 
 ---
 
 ## Overview
 
-This project represents a production-style dashboard UI for managing and monitoring security scans. It demonstrates scalable component structure, responsive design, and modern UI patterns commonly used in real-world SaaS applications.
+Security Dashboard is a modern, responsive web application designed to simulate a real-world security monitoring system.  
+It focuses on clean UI architecture, scalable component design, and a professional SaaS-style user experience.
+
+Built using React and Tailwind CSS, the project demonstrates frontend best practices, including responsive layouts, dark mode handling, and structured component composition.
 
 ---
 
-## Features
+## Live Demo
 
-- Light and Dark mode (Tailwind CSS v4)
-- Fully responsive design (mobile, tablet, desktop)
-- Sidebar navigation (desktop) with mobile drawer
-- Topbar with search and controls
-- Dashboard statistics section
-- Scan management interface
-  - Table view for desktop
-  - Card view for mobile
-- Toast notification system
-- Clean and minimal UI with modern design principles
+🔗 **Live Demo:** https://your-dashboard-link.vercel.app  
 
----
-
-## Tech Stack
-
-- React (Vite)
-- Tailwind CSS v4
-- React Router DOM
-- JavaScript (ES6+)
-
----
-
-<!-- ## Project Structure
-
-src/
-├── components/
-│   ├── layout/
-│   │   ├── Sidebar.jsx
-│   │   ├── Topbar.jsx
-│   │
-│   ├── ui/
-│   │   ├── ThemeToggle.jsx
-│   │   ├── StatusChip.jsx
-│   │   ├── Toast.jsx
-│
-├── pages/
-│   ├── Dashboard.jsx
-│   ├── Login.jsx
-│   ├── ScanDetail.jsx
-│
-├── data/
-│   ├── mockData.js
-│
-├── App.jsx
-├── main.jsx
-
---- -->
-
-## Getting Started
-
-### Installation
-
-git clone https://github.com/your-username/security-dashboard.git  
-cd security-dashboard  
-npm install  
-npm run dev  
-
----
-
-## Dark Mode Configuration
-
-Tailwind CSS v4 uses a custom variant for dark mode:
-
-@import "tailwindcss";  
-@custom-variant dark (&:where(.dark, .dark *));  
-
-Theme switching is implemented by toggling the `dark` class on the root element:
-
-document.documentElement.classList.toggle("dark");
-
----
-
-## Responsive Design
-
-Mobile  : Card-based layout with drawer navigation  
-Tablet  : Adaptive responsive layout  
-Desktop : Sidebar with table-based data view  
+The live version showcases the dashboard layout, responsive behavior, and UI interactions.  
+For the best experience, viewing on both desktop and mobile devices is recommended.
 
 ---
 
 ## Design Approach
 
-- Mobile-first layout strategy  
-- Minimal and clean interface  
-- Consistent spacing and typography  
-- Reusable component-based structure  
-- Inspired by modern SaaS products  
+The design follows modern SaaS product principles with a focus on usability and clarity.
+
+**Key design considerations:**
+- Mobile-first responsive layout
+- Clean and minimal interface
+- Sidebar + Topbar architecture
+- Dark mode for reduced visual strain
+- Consistent spacing and typography
+- Subtle transitions for interaction feedback
 
 ---
 
-## Future Enhancements
+## Features
 
-- Authentication (JWT or OAuth)  
-- Backend integration (Node.js or NestJS)  
-- API-based data handling  
-- Role-based access control  
-- Charts and analytics  
-- Performance optimization  
-
----
-
-## Author
-
-Vishal
+- Dashboard overview with key statistics
+- Security scan management interface
+- Table view for desktop users
+- Card-based layout for mobile devices
+- Sidebar navigation (desktop)
+- Mobile drawer navigation
+- Dark and Light mode toggle (Tailwind v4)
+- Search and filtering interface
+- Toast notification system
+- Smooth UI transitions and hover states
 
 ---
 
-## License
+## Technology Stack
 
-This project is licensed under the MIT License.
+- **Frontend:** React.js  
+- **Styling:** Tailwind CSS v4  
+- **Build Tool:** Vite  
+- **Routing:** React Router DOM  
+- **State Management:** React Hooks  
+- **Data Source:** Local mock data  
+
+---
+
+## Installation
+
+```bash
+git clone https://github.com/vishalraj55/Dashboard
+cd security-dashboard
+npm install
+npm run dev
