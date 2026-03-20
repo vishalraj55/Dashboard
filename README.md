@@ -1,26 +1,28 @@
-# Modern Security Dashboard (React + Tailwind)
+# Security Dashboard
 
-A modern, responsive Security Dashboard UI built with React and Tailwind CSS, inspired by real-world SaaS products like Linear, Vercel, and Notion.
+A modern, responsive security dashboard built with React and Tailwind CSS.  
+Designed with a clean SaaS-style interface, focusing on usability, performance, and real-world frontend architecture.
+
+---
+
+## Overview
+
+This project represents a production-style dashboard UI for managing and monitoring security scans. It demonstrates scalable component structure, responsive design, and modern UI patterns commonly used in real-world SaaS applications.
 
 ---
 
 ## Features
 
-- Dark / Light Mode Toggle (Tailwind v4 compatible)
-- Fully Responsive Design
-  - Mobile-first layout
-  - Card-based UI for small screens
-- Sidebar Navigation
-  - Desktop sidebar
-  - Mobile drawer (Topbar controlled)
-- Search and Filtering UI
-- Dashboard Stats Section
-- Scans Table (Desktop)
-- Card Layout (Mobile View)
-- Toast Notifications
-- Modern UI Design
-  - Glassmorphism (blur and transparency)
-  - Smooth transitions and subtle shadows
+- Light and Dark mode (Tailwind CSS v4)
+- Fully responsive design (mobile, tablet, desktop)
+- Sidebar navigation (desktop) with mobile drawer
+- Topbar with search and controls
+- Dashboard statistics section
+- Scan management interface
+  - Table view for desktop
+  - Card view for mobile
+- Toast notification system
+- Clean and minimal UI with modern design principles
 
 ---
 
@@ -29,14 +31,13 @@ A modern, responsive Security Dashboard UI built with React and Tailwind CSS, in
 - React (Vite)
 - Tailwind CSS v4
 - React Router DOM
-- Local State (useState, useEffect)
+- JavaScript (ES6+)
 
 ---
 
 ## Project Structure
 
 src/
-│
 ├── components/
 │   ├── layout/
 │   │   ├── Sidebar.jsx
@@ -60,63 +61,56 @@ src/
 
 ---
 
-## Installation
+## Getting Started
 
-git clone https://github.com/your-username/your-repo-name.git  
-cd your-repo-name  
+### Installation
+
+git clone https://github.com/your-username/security-dashboard.git  
+cd security-dashboard  
 npm install  
 npm run dev  
 
 ---
 
-## Dark Mode Setup (Tailwind v4)
+## Dark Mode Configuration
 
-This project uses Tailwind v4 custom variant:
+Tailwind CSS v4 uses a custom variant for dark mode:
 
 @import "tailwindcss";  
 @custom-variant dark (&:where(.dark, .dark *));  
 
-Theme toggle is implemented using:
+Theme switching is implemented by toggling the `dark` class on the root element:
 
-document.documentElement.classList.toggle("dark")
-
----
-
-## Responsive Behavior
-
-Mobile  : Card-based scan list with drawer menu  
-Tablet  : Mixed layout  
-Desktop : Sidebar with table view  
+document.documentElement.classList.toggle("dark");
 
 ---
 
-## Key Highlights
+## Responsive Design
 
-- Component-based architecture  
-- Clean and scalable UI  
-- Real-world dashboard patterns  
-- Mobile-first responsive design  
-- Interview-ready frontend project  
+Mobile  : Card-based layout with drawer navigation  
+Tablet  : Adaptive responsive layout  
+Desktop : Sidebar with table-based data view  
 
 ---
 
-## Future Improvements
+## Design Approach
+
+- Mobile-first layout strategy  
+- Minimal and clean interface  
+- Consistent spacing and typography  
+- Reusable component-based structure  
+- Inspired by modern SaaS products  
+
+---
+
+## Future Enhancements
 
 - Authentication (JWT or OAuth)  
 - Backend integration (Node.js or NestJS)  
-- Real API data handling  
-- Notifications system  
-- Charts and analytics (Recharts or Chart.js)  
+- API-based data handling  
+- Role-based access control  
+- Charts and analytics  
 - Performance optimization  
-
----
-
-## Preview
-
-Add screenshots of:
-- Dashboard (light mode)
-- Dashboard (dark mode)
-- Mobile view
 
 ---
 
@@ -128,4 +122,4 @@ Vishal
 
 ## License
 
-This project is open-source and available under the MIT License.
+This project is licensed under the MIT License.
