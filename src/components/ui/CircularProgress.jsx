@@ -1,41 +1,55 @@
-export default function CircularProgress({ value }) {
-  const radius = 50;
+export default function CircularProgress({ value, size = 100 }) {
   const stroke = 8;
-  const normalizedRadius = radius - stroke * 2;
+  const radius = size / 2;
+  const normalizedRadius = radius - stroke;
   const circumference = normalizedRadius * 2 * Math.PI;
   const strokeDashoffset =
     circumference - (value / 100) * circumference;
 
   return (
-    <svg height={radius * 2} width={radius * 2}>
-      <circle
-        stroke="#2A2A2A"
-        fill="transparent"
-        strokeWidth={stroke}
-        r={normalizedRadius}
-        cx={radius}
-        cy={radius}
-      />
-      <circle
-        stroke="#0CC8A8"
-        fill="transparent"
-        strokeWidth={stroke}
-        strokeDasharray={circumference + " " + circumference}
-        style={{ strokeDashoffset }}
-        strokeLinecap="round"
-        r={normalizedRadius}
-        cx={radius}
-        cy={radius}
-      />
-      <text
-        x="50%"
-        y="50%"
-        dominantBaseline="middle"
-        textAnchor="middle"
-        className="fill-current text-sm"
-      >
+    <div
+      className="relative flex items-center justify-center"
+      style={{ width: size, height: size }}
+    >
+      <svg height={size} width={size} className="rotate-90">
+        {/* Background Track */}
+        <circle
+          stroke="currentColor"
+          className="text-gray-200 dark:text-gray-800"
+          fill="transparent"
+          strokeWidth={stroke}
+          r={normalizedRadius}
+          cx={radius}
+          cy={radius}
+        />
+
+        {/* Progress */}
+        <circle
+          stroke="url(#gradient)"
+          fill="transparent"
+          strokeWidth={stroke}
+          strokeDasharray={circumference}
+          strokeDashoffset={strokeDashoffset}
+          strokeLinecap="round"
+          r={normalizedRadius}
+          cx={radius}
+          cy={radius}
+          className="transition-all duration-500 ease-out"
+        />
+
+        {/* Gradient */}
+        <defs>
+          <linearGradient id="gradient">
+            <stop offset="0%" stopColor="#14b8a6" />
+            <stop offset="100%" stopColor="#0ea5e9" />
+          </linearGradient>
+        </defs>
+      </svg>
+
+      {/* Center Text */}
+      <span className="absolute text-xs sm:text-sm font-medium">
         {value}%
-      </text>
-    </svg>
+      </span>
+    </div>
   );
 }

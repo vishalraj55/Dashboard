@@ -96,7 +96,7 @@ export default function Dashboard({ theme, setTheme }) {
             ))}
           </div>
 
-          {/* ✅ DESKTOP TABLE */}
+          {/* DESKTOP TABLE */}
           <div className="hidden sm:block bg-white/80 dark:bg-white/3 border border-gray-200/60 dark:border-white/10 rounded-2xl overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
