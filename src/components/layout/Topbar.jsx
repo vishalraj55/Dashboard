@@ -1,82 +1,60 @@
 import ThemeToggle from "../ui/ThemeToggle";
-import { useState } from "react";
+import { Menu } from "lucide-react";
 
 export default function Topbar({ theme, setTheme }) {
-  const [open, setOpen] = useState(false);
-
   return (
-    <>
-      {/* Topbar */}
-      <div className="
+    <div
+      className="
         sticky top-0 z-40
         flex items-center justify-between
-        px-4 py-3
+        px-5 py-3
 
-        bg-white/80 dark:bg-white/3
-        backdrop-blur-xl
+        bg-white dark:bg-[#0D1117]
+        border-b border-gray-200 dark:border-white/5
 
-        border-b border-gray-200/60 dark:border-white/10
-      ">
-        {/* LEFT */}
-        <div className="flex items-center gap-3">
+        transition-colors duration-300
+      "
+    >
+      {/* LEFT */}
+      <div className="flex items-center gap-3">
 
-          {/* MOBILE MENU BUTTON */}
-          <button
-            onClick={() => setOpen(true)}
-            className="md:hidden text-lg p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-white/10"
-          >
-            ☰
-          </button>
+        {/* MENU BUTTON (future sidebar toggle) */}
+        <button
+          className="
+            md:hidden p-2 rounded-md
+            text-gray-600 dark:text-gray-400
+            hover:bg-gray-100 dark:hover:bg-white/5
+            hover:text-gray-900 dark:hover:text-white
+            transition
+          "
+        >
+          <Menu size={18} />
+        </button>
 
-          <h2 className="text-sm sm:text-base font-medium">
-            Dashboard
-          </h2>
-        </div>
-
-        {/* RIGHT */}
-        <div className="flex items-center gap-3">
-          <ThemeToggle theme={theme} setTheme={setTheme} />
-
-          <div className="w-8 h-8 rounded-full bg-teal-500/20 flex items-center justify-center text-xs font-semibold text-teal-500">
-            A
-          </div>
-        </div>
+        <h2 className="text-sm font-medium text-gray-900 dark:text-white">
+          Dashboard
+        </h2>
       </div>
 
-      {/* MOBILE DRAWER */}
-      {open && (
-        <>
-          <div
-            className="fixed inset-0 bg-black/40 z-40"
-            onClick={() => setOpen(false)}
-          />
+      {/* RIGHT */}
+      <div className="flex items-center gap-4">
 
-          <div className="
-            fixed top-0 left-0 h-full w-64 z-50
-            bg-white dark:bg-[#121212]
-            border-r border-gray-200 dark:border-gray-800
-            p-6
-          ">
-            <button onClick={() => setOpen(false)} className="mb-6">
-              ✕
-            </button>
+        <ThemeToggle theme={theme} setTheme={setTheme} />
 
-            <p className="text-lg font-semibold mb-4 text-teal-500">
-              aps
-            </p>
+        {/* AVATAR */}
+        <div
+          className="
+            w-8 h-8 rounded-full
+            bg-gray-200 dark:bg-white/10
+            flex items-center justify-center
+            text-xs font-medium
+            text-gray-700 dark:text-gray-300
+          "
+        >
+          A
+        </div>
 
-            <ul className="space-y-3">
-              {["Dashboard","Projects","Scans","Schedule","Notifications","Settings","Support"].map(item => (
-                <li key={item}>
-                  <a href="/dashboard" className="block text-sm text-gray-600 dark:text-gray-400">
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </>
-      )}
-    </>
+      </div>
+    </div>
   );
 }
