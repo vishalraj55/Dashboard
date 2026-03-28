@@ -1,10 +1,43 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export default function Login() {
   const navigate = useNavigate();
 
+  // ✅ ADDED STATE
+  const [showPopup, setShowPopup] = useState(true);
+
   return (
     <div className="min-h-screen flex flex-col md:flex-row bg-white dark:bg-[#0F0F0F] text-gray-900 dark:text-white transition-colors duration-300">
+
+      {/* 🔥 FULL SCREEN POPUP */}
+      {showPopup && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
+
+          <div className="bg-white dark:bg-[#1A1A1A] rounded-2xl p-8 max-w-md w-[90%] text-center shadow-xl">
+
+            <h2 className="text-xl font-semibold mb-4">
+              ⚠️ Demo Project Notice
+            </h2>
+
+            <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
+              This is a UI-based project. Authentication and backend are not connected.
+              <br /><br />
+              You can click <span className="text-teal-500 font-medium">Sign In</span> directly without filling any details.
+              <br />
+              It will open the dashboard.
+            </p>
+
+            <button
+              onClick={() => setShowPopup(false)}
+              className="w-full bg-teal-500 text-black py-3 rounded-xl font-medium hover:opacity-90 transition"
+            >
+              Got it, continue
+            </button>
+
+          </div>
+        </div>
+      )}
 
       {/* LEFT PANEL (Branding) */}
       <div className="hidden md:flex w-1/2 relative overflow-hidden bg-linear-to-br from-teal-500/20 via-indigo-500/10 to-transparent dark:from-teal-500/10 dark:via-indigo-500/5 p-20 flex-col justify-center">
@@ -48,7 +81,7 @@ export default function Login() {
           {/* Logo */}
           <div className="mb-10">
             <h2 className="text-2xl font-semibold tracking-tight">
-              APS Security
+              VR Security
             </h2>
             <p className="text-sm text-gray-500 mt-1">
               Create your account to continue
@@ -137,7 +170,7 @@ export default function Login() {
 
           {/* Footer */}
           <p className="text-xs text-gray-500 text-center mt-8">
-            © 2026 APS Security Platform
+            © 2026 VR Security Platform
           </p>
 
         </div>

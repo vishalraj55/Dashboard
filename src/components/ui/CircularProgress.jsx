@@ -7,6 +7,15 @@ export default function CircularProgress({ value, size = 110 }) {
   const strokeDashoffset =
     circumference - (value / 100) * circumference;
 
+  // Dynamic color logic (no UI structure changed)
+  const getColor = () => {
+    if (value < 40) return ["#ef4444", "#f87171"]; 
+    if (value < 60) return ["#facc15", "#fde047"];
+    return ["#22c55e", "#4ade80"]; 
+  };
+
+  const [startColor, endColor] = getColor();
+
   return (
     <div
       className="relative flex items-center justify-center"
@@ -40,7 +49,7 @@ export default function CircularProgress({ value, size = 110 }) {
           strokeDashoffset={strokeDashoffset}
           strokeLinecap="round"
           style={{
-            filter: "drop-shadow(0 0 6px rgba(20,184,166,0.6))",
+            filter: `drop-shadow(0 0 4px ${startColor})`,
           }}
         />
 
@@ -58,11 +67,11 @@ export default function CircularProgress({ value, size = 110 }) {
           className="transition-all duration-700 ease-out"
         />
 
-        {/* Gradient */}
+        {/* Dynamic Gradient */}
         <defs>
           <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#2dd4bf" />
-            <stop offset="100%" stopColor="#22d3ee" />
+            <stop offset="0%" stopColor={startColor} />
+            <stop offset="100%" stopColor={endColor} />
           </linearGradient>
         </defs>
       </svg>
