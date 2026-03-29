@@ -102,7 +102,7 @@ export default function Dashboard({ theme, setTheme }) {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 className="
-                  w-90 px-4 py-3 rounded-xl text-sm
+                  w-full px-4 py-3 rounded-xl text-sm
                   border border-gray-300/70 dark:border-gray-700
                   bg-white/80 dark:bg-white/3
                   focus:outline-none focus:ring-2 focus:ring-teal-500/40
