@@ -13,10 +13,10 @@ export default function Login() {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm px-4">
           <div className="bg-white dark:bg-[#1A1A1A] rounded-2xl p-6 sm:p-8 w-full max-w-md text-center shadow-xl">
             <h2 className="text-lg sm:text-xl font-semibold mb-3">
-              ⚠️ Demo Project
+               Demo Project
             </h2>
             <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">
-              Just click Sign In to continue.
+              This is a demo UI. <br />Simply click “Sign In” to continue - no credentials required.
             </p>
             <button
               onClick={() => setShowPopup(false)}
