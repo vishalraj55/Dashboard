@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
@@ -18,17 +18,19 @@ export default function App() {
   }, [theme]);
 
   return (
-    <Routes>
-      <Route path="/" element={<Login theme={theme} setTheme={setTheme} />} />
-      <Route
-        path="/dashboard"
-        element={<Dashboard theme={theme} setTheme={setTheme} />}
-      />
-      <Route
-        path="/scan/:id"
-        element={<ScanDetail theme={theme} setTheme={setTheme} />}
-      />
-      <Route path="*" element={<Navigate to="/" />} />
-    </Routes>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login theme={theme} setTheme={setTheme} />} />
+        <Route
+          path="/dashboard"
+          element={<Dashboard theme={theme} setTheme={setTheme} />}
+        />
+        <Route
+          path="/scan/:id"
+          element={<ScanDetail theme={theme} setTheme={setTheme} />}
+        />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
