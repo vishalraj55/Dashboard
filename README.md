@@ -1,7 +1,7 @@
 <h1 align="center">Security Dashboard</h1>
 
 <p align="center">
-A modern SaaS-style security monitoring dashboard built with a focus on clean UI, scalability, and real-world product design.
+A modern security monitoring dashboard built with a focus on clean UI, scalability, and real-world product design.
 </p>
 
 <p align="center">
@@ -70,7 +70,41 @@ The design follows modern SaaS product principles with a focus on usability and 
 | Data Source    | Local mock data |
 
 ---
+## Latest Updates (Mobile Sidebar Fix & UI Improvements)
 
+### Mobile Sidebar Fix
+
+#### Issue
+On small screens, the sidebar opened but appeared blank.
+
+#### Root Cause
+The Sidebar component contained:
+hidden md:flex
+This prevented it from rendering on mobile. Since the same component was reused inside a mobile overlay, no content was visible.
+
+---
+### Dropdown & UI Improvements
+
+- Replaced text-based arrows with Lucide icons
+- Added rotation animation to dropdown indicators
+- Fixed JSX issues causing blank screen
+- Improved dropdown interaction (state-based rotation)
+
+---
+
+### Code Stability Fixes
+
+- Fixed invalid Tailwind classes
+- Corrected JSX syntax errors
+- Ensured consistent component rendering across breakpoints
+
+---
+
+### Notes
+
+- Sidebar visibility is now handled at the layout level
+- Avoid using responsive visibility classes (`hidden md:flex`) inside reusable components
+---
 ## Login 
 
 <p align="center"> <img src="./screenshots/login.png" width="900"/> </p>
