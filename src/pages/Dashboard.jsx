@@ -30,7 +30,6 @@ export default function Dashboard({ theme, setTheme }) {
 
   return (
     <div className="h-screen flex overflow-hidden bg-gray-50 dark:bg-[#0a0a0a] text-gray-900 dark:text-gray-100">
-
       {/* DESKTOP SIDEBAR */}
       <div className="hidden md:block">
         <Sidebar />
@@ -39,14 +38,12 @@ export default function Dashboard({ theme, setTheme }) {
       {/* MOBILE SIDEBAR */}
       {openSidebar && (
         <div className="fixed inset-0 z-999 flex">
-
           <div
             className="absolute inset-0 bg-black/40"
             onClick={() => setOpenSidebar(false)}
           />
 
           <div className="relative w-64 max-w-[80%] h-full bg-white dark:bg-[#111] shadow-xl z-1000">
-
             <button
               onClick={() => setOpenSidebar(false)}
               className="absolute top-3 right-3 md:hidden"
@@ -61,7 +58,6 @@ export default function Dashboard({ theme, setTheme }) {
 
       {/* MAIN */}
       <div className="flex flex-col flex-1 w-full overflow-hidden">
-
         {/* TOPBAR */}
         <Topbar
           theme={theme}
@@ -71,7 +67,6 @@ export default function Dashboard({ theme, setTheme }) {
 
         {/* SCROLL AREA */}
         <div className="flex-1 overflow-y-auto px-3 sm:px-4 md:px-6 py-4">
-
           {/* STATS */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
             {[
@@ -92,9 +87,8 @@ export default function Dashboard({ theme, setTheme }) {
             ))}
           </div>
 
-          {/* ✅ CLEAN TOOLBAR */}
+          {/* CLEAN TOOLBAR */}
           <div className="flex flex-col sm:flex-row gap-3 mb-5">
-
             {/* SEARCH */}
             <div className="flex-1">
               <input
@@ -112,31 +106,38 @@ export default function Dashboard({ theme, setTheme }) {
 
             {/* FILTER */}
             <div className="relative w-full sm:w-55">
-
               <button
                 onClick={() => setOpenFilter(!openFilter)}
                 className="
-                  flex items-center justify-between w-full
-                  px-4 py-3 rounded-xl text-sm
-                  border border-gray-300/70 dark:border-gray-700
-                  bg-white/80 dark:bg-white/3
-                  hover:bg-gray-100 dark:hover:bg-white/5
-                "
+    flex items-center justify-between w-full
+    px-4 py-3 rounded-xl text-sm
+    border border-gray-300/70 dark:border-gray-700
+    bg-white/80 dark:bg-white/3
+    hover:bg-gray-100 dark:hover:bg-white/5
+  "
               >
                 <div className="flex items-center gap-2">
                   <Filter size={16} />
                   {statusFilter}
                 </div>
-                <ChevronDown size={16} />
+
+                <ChevronDown
+                  size={16}
+                  className={`transition-transform duration-200 ${
+                    openFilter ? "rotate-180" : "rotate-0"
+                  }`}
+                />
               </button>
 
               {openFilter && (
-                <div className="
+                <div
+                  className="
                   absolute mt-2 w-full
                   bg-white dark:bg-[#111]
                   border border-gray-200 dark:border-gray-700
                   rounded-xl shadow-lg z-20 overflow-hidden
-                ">
+                "
+                >
                   {["All", "Completed", "Scheduled", "Failed"].map((status) => (
                     <button
                       key={status}
@@ -155,7 +156,6 @@ export default function Dashboard({ theme, setTheme }) {
                   ))}
                 </div>
               )}
-
             </div>
           </div>
 
@@ -210,9 +210,13 @@ export default function Dashboard({ theme, setTheme }) {
                     onClick={() => navigate(`/scan/${scan.id}`)}
                     className="text-center border-b border-gray-100 dark:border-white/5 hover:bg-gray-50 dark:hover:bg-white/5 cursor-pointer"
                   >
-                    <td className="px-3 py-3 wrap-break-words text-left">{scan.name}</td>
+                    <td className="px-3 py-3 wrap-break-words text-left">
+                      {scan.name}
+                    </td>
                     <td className="wrap-break-words">{scan.type}</td>
-                    <td><StatusChip status={scan.status} /></td>
+                    <td>
+                      <StatusChip status={scan.status} />
+                    </td>
                     <td className="text-teal-500">{scan.progress}%</td>
                     <td className="wrap-break-words">{scan.lastScan}</td>
                   </tr>
@@ -220,7 +224,6 @@ export default function Dashboard({ theme, setTheme }) {
               </tbody>
             </table>
           </div>
-
         </div>
       </div>
 

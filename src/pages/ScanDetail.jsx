@@ -3,14 +3,32 @@ import { scans } from "../data/mockData";
 import Sidebar from "../components/layout/Sidebar";
 import Topbar from "../components/layout/Topbar";
 import CircularProgress from "../components/ui/CircularProgress";
-import { useState } from "react";
-import { X } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { X, ChevronDown } from "lucide-react";
 
 export default function ScanDetail({ theme, setTheme }) {
   const { id } = useParams();
   const scan = scans.find((s) => s.id === Number(id));
 
   const [openSidebar, setOpenSidebar] = useState(false);
+
+  // dropdown state
+  const [showExportMenu, setShowExportMenu] = useState(false);
+
+  // ✅ NEW: ref for outside click
+  const menuRef = useRef(null);
+
+  // ✅ NEW: outside click handler
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setShowExportMenu(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   if (!scan) return <div className="p-6">Scan not found</div>;
 
@@ -29,25 +47,56 @@ export default function ScanDetail({ theme, setTheme }) {
     { label: "Low", key: "low", color: "bg-green-500 text-green-400" },
   ];
 
+  const exportJSON = () => {
+    const dataStr = JSON.stringify(scan, null, 2);
+    const blob = new Blob([dataStr], { type: "application/json" });
+
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `scan-${scan.id}.json`;
+    link.click();
+
+    URL.revokeObjectURL(url);
+  };
+
+  const exportCSV = () => {
+    const rows = [
+      ["Field", "Value"],
+      ["Scan ID", scan.id],
+      ["Name", scan.name],
+      ["Type", scan.type],
+      ["Endpoints", scan.endpoints || 0],
+      ["Risk Score", scan.riskScore || ""],
+      ["Critical", vuln.critical || 0],
+      ["High", vuln.high || 0],
+      ["Medium", vuln.medium || 0],
+      ["Low", vuln.low || 0],
+    ];
+
+    const csvContent =
+      "data:text/csv;charset=utf-8," + rows.map((e) => e.join(",")).join("\n");
+
+    const link = document.createElement("a");
+    link.href = encodeURI(csvContent);
+    link.download = `scan-${scan.id}.csv`;
+    link.click();
+  };
+
   return (
     <div className="flex min-h-screen bg-white dark:bg-[#0B0F14] text-gray-900 dark:text-white">
-
-      {/* SIDEBAR */}
       <div className="hidden md:block">
         <Sidebar />
       </div>
 
-      {/* MOBILE SIDEBAR */}
       {openSidebar && (
         <div className="fixed inset-0 z-999 flex">
-
           <div
             className="absolute inset-0 bg-black/40"
             onClick={() => setOpenSidebar(false)}
           />
 
           <div className="relative w-64 max-w-[80%] h-full bg-white dark:bg-[#111] shadow-xl z-1000">
-
             <button
               onClick={() => setOpenSidebar(false)}
               className="absolute top-3 right-3 md:hidden"
@@ -60,46 +109,83 @@ export default function ScanDetail({ theme, setTheme }) {
         </div>
       )}
 
-      {/* MAIN */}
       <div className="flex-1 flex flex-col">
-
-        {/* TOPBAR */}
         <Topbar
           theme={theme}
           setTheme={setTheme}
           onMenuClick={() => setOpenSidebar(true)}
         />
 
-        {/* CONTENT */}
         <div className="p-6 md:p-10 space-y-6">
-
-          {/* HEADER */}
           <div className="flex justify-between items-center">
             <div>
-              <h1 className="text-lg font-semibold">
-                {scan.name}
-              </h1>
+              <h1 className="text-lg font-semibold">{scan.name}</h1>
               <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
                 ID: SCN-{String(scan.id).padStart(5, "0")}
               </p>
             </div>
 
-            <button className="border border-gray-300 dark:border-white/20 px-4 py-2 rounded-lg text-sm hover:bg-gray-100 dark:hover:bg-white/10">
-              EXPORT REPORT
-            </button>
+            {/* DROPDOWN */}
+            <div className="relative" ref={menuRef}>
+              <button
+                onClick={() => setShowExportMenu((prev) => !prev)}
+                className="flex items-center gap-2 border border-gray-300 dark:border-white/20 px-4 py-2 rounded-lg text-sm hover:bg-gray-100 dark:hover:bg-white/10"
+              >
+                Export
+                <ChevronDown
+                  size={16}
+                  className={`transition-transform duration-200 ${
+                    showExportMenu ? "rotate-180" : "rotate-0"
+                  }`}
+                />
+              </button>
+
+              <div
+                className={`absolute right-0 mt-2 w-36 bg-white dark:bg-[#111] border border-gray-200 dark:border-white/10 rounded-lg shadow-lg z-50 transform transition-all duration-200 origin-top ${
+                  showExportMenu
+                    ? "opacity-100 scale-100"
+                    : "opacity-0 scale-95 pointer-events-none"
+                }`}
+              >
+                <button
+                  onClick={() => {
+                    exportJSON();
+                    setShowExportMenu(false);
+                  }}
+                  className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-white/10"
+                >
+                  Export JSON
+                </button>
+
+                <button
+                  onClick={() => {
+                    exportCSV();
+                    setShowExportMenu(false);
+                  }}
+                  className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-white/10"
+                >
+                  Export CSV
+                </button>
+              </div>
+            </div>
           </div>
 
-          {/* TOP GRID */}
+          {/* REST OF YOUR CODE — COMPLETELY UNCHANGED */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-
             {/* PROGRESS */}
             <div className="bg-white dark:bg-[#11161D] border border-gray-200 dark:border-white/10 rounded-2xl p-6 flex gap-6 items-center">
               <CircularProgress value={scan.progress} />
 
               <div className="space-y-2 text-sm">
-                <p className="text-green-500 dark:text-green-400">Discovery ✓</p>
-                <p className="text-green-500 dark:text-green-400">Enumeration ✓</p>
-                <p className="text-blue-500 dark:text-blue-400">Exploitation ▶</p>
+                <p className="text-green-500 dark:text-green-400">
+                  Discovery ✓
+                </p>
+                <p className="text-green-500 dark:text-green-400">
+                  Enumeration ✓
+                </p>
+                <p className="text-blue-500 dark:text-blue-400">
+                  Exploitation ▶
+                </p>
                 <p className="text-gray-500 dark:text-gray-400">Reporting</p>
               </div>
             </div>
@@ -141,7 +227,6 @@ export default function ScanDetail({ theme, setTheme }) {
 
           {/* MIDDLE GRID */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-
             {/* DISTRIBUTION */}
             <div className="bg-white dark:bg-[#11161D] border border-gray-200 dark:border-white/10 rounded-2xl p-6 space-y-4">
               <h2 className="text-sm text-gray-500 dark:text-gray-400">
@@ -150,15 +235,15 @@ export default function ScanDetail({ theme, setTheme }) {
 
               {distribution.map((item) => {
                 const value = vuln[item.key] || 0;
-                const percent = total
-                  ? Math.round((value / total) * 100)
-                  : 0;
+                const percent = total ? Math.round((value / total) * 100) : 0;
 
                 return (
                   <div key={item.key}>
                     <div className="flex justify-between text-xs mb-1">
                       <span>{item.label}</span>
-                      <span>{value} · {percent}%</span>
+                      <span>
+                        {value} · {percent}%
+                      </span>
                     </div>
 
                     <div className="h-2 bg-gray-200 dark:bg-gray-800 rounded-full">
@@ -199,13 +284,18 @@ export default function ScanDetail({ theme, setTheme }) {
 
             {/* SCAN INTELLIGENCE */}
             <div className="bg-white dark:bg-[#11161D] border border-gray-200 dark:border-white/10 rounded-2xl p-6 space-y-4 text-sm">
-              <h2 className="text-gray-500 dark:text-gray-400">SCAN INTELLIGENCE</h2>
+              <h2 className="text-gray-500 dark:text-gray-400">
+                SCAN INTELLIGENCE
+              </h2>
 
               <div className="grid grid-cols-2 gap-4">
                 <InfoBox label="RISK SCORE" value={scan.riskScore || "—"} />
                 <InfoBox label="ATTACK SURFACE" value={scan.endpoints || 0} />
                 <InfoBox label="EXPLOITABLE" value={scan.exploitable || 0} />
-                <InfoBox label="FALSE POSITIVES" value={scan.falsePositives || 0} />
+                <InfoBox
+                  label="FALSE POSITIVES"
+                  value={scan.falsePositives || 0}
+                />
               </div>
 
               {scan.remediation && (
@@ -217,8 +307,6 @@ export default function ScanDetail({ theme, setTheme }) {
               )}
             </div>
           </div>
-
-
         </div>
       </div>
     </div>

@@ -5,10 +5,16 @@ import Dashboard from "./pages/Dashboard";
 import ScanDetail from "./pages/ScanDetail";
 
 export default function App() {
-  const [theme, setTheme] = useState("light");
+  // default dark
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem("theme") || "dark";
+  });
 
   useEffect(() => {
     const root = document.documentElement;
+
+    // persist theme
+    localStorage.setItem("theme", theme);
 
     if (theme === "dark") {
       root.classList.add("dark");

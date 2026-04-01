@@ -8,12 +8,12 @@ export default function Login() {
   return (
     <div className="min-h-screen flex flex-col md:flex-row bg-[#F7F7F8] dark:bg-[#0F0F0F] text-gray-900 dark:text-white">
 
-      {/* 🔥 POPUP */}
+      {/* POPUP */}
       {showPopup && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm px-4">
           <div className="bg-white dark:bg-[#1A1A1A] rounded-2xl p-6 sm:p-8 w-full max-w-md text-center shadow-xl">
             <h2 className="text-lg sm:text-xl font-semibold mb-3">
-               Demo Project
+              Demo Project
             </h2>
             <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">
               This is a demo UI. <br />Simply click “Sign In” to continue - no credentials required.
@@ -28,7 +28,7 @@ export default function Login() {
         </div>
       )}
 
-      {/*Desktop only*/}
+      {/* Desktop only */}
       <div className="hidden md:flex w-1/2 relative overflow-hidden bg-linear-to-br from-teal-500/20 via-indigo-500/10 to-transparent p-12 lg:p-20 items-center">
         <div className="max-w-lg">
           <h1 className="text-4xl xl:text-5xl font-semibold mb-6 leading-tight">
@@ -57,7 +57,7 @@ export default function Login() {
         </div>
       </div>
 
-      {/* 📱 RIGHT PANEL */}
+      {/* RIGHT PANEL */}
       <div className="flex-1 flex flex-col justify-center px-5 py-10 md:px-12">
 
         <div className="w-full max-w-md mx-auto">

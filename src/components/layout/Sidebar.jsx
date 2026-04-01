@@ -32,7 +32,7 @@ export default function Sidebar() {
   return (
     <aside
       className="
-        hidden md:flex flex-col w-64 min-h-screen
+        flex flex-col w-64 min-h-screen
         bg-white dark:bg-[#0D1117]
         border-r border-gray-200 dark:border-white/5
         transition-colors duration-300
