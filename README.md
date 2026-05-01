@@ -108,6 +108,6 @@ The design follows modern SaaS product principles with a focus on usability and 
 
 ```bash
 git clone https://github.com/vishalraj55/Dashboard
-cd security-dashboard
+cd Dashboard
 npm install
 npm run dev
